@@ -139,17 +139,15 @@ public class ChartBean implements Serializable {
 	
 	public void start(){
 		
-//		Runnable r = new Runnable() {
-//			public void run() {
-//				receiver.run();
-//			}
-//		};
-//
-//		new Thread(r).start();
+		Runnable r = new Runnable() {
+			public void run() {
+				receiver.run();
+			}
+		};
+
+		new Thread(r).start();
 		
-		receiver.run();
-		
-	 
+	  
 //		FacesContext.getCurrentInstance().renderResponse();  
  		 
 		
