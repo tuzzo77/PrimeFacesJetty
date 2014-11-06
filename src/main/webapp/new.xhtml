@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Welcome</title>
+</h:head>
+
+<h:body style="font-size:9pt;">
+
+	<h:form>
+
+
+		<script type="text/javascript"
+			src="#{request.contextPath}/js/jqplot.dateAxisRenderer.min.js"></script>
+		<script type="text/javascript"
+			src="#{request.contextPath}/js/jqplot.canvasAxisTickRenderer.min.js"></script>
+
+		<script type="text/javascript">
+function ext() {
+      this.cfg.axes = { 
+   yaxis: {
+	tickOptions: {formatString: "%#.1f"},
+    numberTicks: 20,
+    label: '°C',
+    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+    formatString: "%#.2f",
+    labelOptions: { fontFamily: 'Verdana', fontSize: '10pt' },
+   },
+   xaxis: { 
+    renderer: $.jqplot.DateAxisRenderer,
+    rendererOptions: { tickRenderer:$.jqplot.CanvasAxisTickRenderer },
+    tickOptions: { formatString:'%d/%m/%Y %H:%M', angle:-50, },
+    
+    label: 'Date',
+    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+    labelOptions: { fontFamily: 'Verdana', fontSize: '10pt' }
+   
+   }
+  }; 
+   }
+</script>
+
+
+		<p:panel header="Temperature Monitor">
+			
+
+			<p:poll interval="3" update="chart" />
+
+
+			<p:chart id="chart" type="line"
+				model="#{chartBean.cartesianChartModel}" style="height:600px;"
+				extender="ext" />
+				
+				
+				<h:panelGrid columns="2" cellpadding="4">
+
+
+
+				<p:commandButton value="Start" update="start" action="#{chartBean.start()}"  ajax="false"/>
+			
+				<p:commandButton value="Stop" update="stop"  action="#{chartBean.stop()}"  ajax="false"/>
+					 
+
+			</h:panelGrid>
+
+		</p:panel>
+
+
+  
+
+		<p:dialog header="What" widgetVar="azz" modal="true" resizable="false">
+			<h:panelGrid id="fuck" columns="1" cellpadding="4">
+				<h:outputText value="Why dont u fuck u?" />
+			</h:panelGrid>
+		</p:dialog>
+
+
+
+	</h:form>
+
+
+</h:body>
+
+
+</html>
